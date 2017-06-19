@@ -84,3 +84,6 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+
+# Add redcarpet markdown support
+markdown: redcarpet
