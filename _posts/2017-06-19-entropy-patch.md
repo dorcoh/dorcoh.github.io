@@ -200,16 +200,9 @@ The parameter k controlles the uniformity of the samples, the higher it is we ha
 Increasing k didn't improve the result (at least for easy formulas like this one)
 
 Increasing nsamples on the other hand, got me near the actual entropy:
+
 nsamples=20 , entropy=0.647872
+
 nsamples=40 , entropy=0.664543
+
 nsamples=80 , entropy=0.673098
-
-
-
-
-
-
-
-
-
-
