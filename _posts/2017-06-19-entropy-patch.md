@@ -29,4 +29,8 @@ An assignment \\( \sigma \in \sum \\) is a mapping that assigns a value in \\( \
 
 Define the weight \\( w(\sigma) \\) to be 1 if \\( \varphi \\) is satisfied by \\( \sigma \\) and 0 otherwise
 
-In this context: $$  W=\sum_{\sigma \in \sum}^{} w(\sigma)=\#(\varphi)  $$
+In this context $$  W=\sum_{\sigma \in \sum}^{} w(\sigma)=\#(\varphi)  $$ is the actual number of solutions to  \\( \varphi \\)
+
+## Entropy
+
+
