@@ -9,4 +9,4 @@ The patch leverages the uniform solution sampling to compute the entropy of a fo
 
 SAT problem is defined as deciding whether there exists a solution for a propositional logic formula, in CNF format (a normal form).
 
-$$ \varphi = 3 $$
+$$a^2 + b^2 = c^2$$
