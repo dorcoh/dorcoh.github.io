@@ -49,7 +49,7 @@ _The entropy of a satisfiable formula is the average entropy of its variables_
 
 ## Hashing and optimization
 
-STS, Search tree sampler is an approximate model counter designed by Stefano Ermon. It uses hashing and optimization technique in order to count solutions. Briefly, in the context of model counting, hashing means that on each 'level' the algorithm explores, we shrink the configuration space. Optimization means using a SAT  solver as an oracle to tell the algorithm if still solutions exist (after shrinking). This technique is also used in probablistic inference problems.
+STS, Search tree sampler is an approximate model counter designed by Stefano Ermon. It uses hashing and optimization technique in order to count solutions. Briefly, in the context of model counting, hashing means that on each 'level' the algorithm explores, we shrink the solutions space. Optimization means using a SAT  solver as an oracle to tell the algorithm if solutions still exist after shrinking. This technique is also used in probablistic inference problems.
 
 Specifically STS works by sampling uniform (controlled by a parameter) solutions. I took advantage of this mechanism and on each run of the algorithm I recorded those uniform solutions, in order to cheaply approximate the entropy, with only one run of STS instead of $$ n $$ runs - as the size of the formula. Computing the entropy requires to compute $$ r(v) $$ for each literal, $$ r(v) $$ is the ratio of solutions that the literal $$ v $$ appears in, from all the formula solutions. So technically if we have a decent amount of uniform solutions, we can approximate the variables entropy.
 
