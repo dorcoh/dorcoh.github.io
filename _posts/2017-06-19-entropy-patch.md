@@ -9,7 +9,7 @@ The patch leverages the uniform solution sampling method to compute the entropy 
 
 ## SAT
 
-Let \$$ X_1 ,... X_n $$ be boolean variables
+Let \$\$ X_1 ,... X_n $$ be boolean variables
 
 A boolean formula \$$ \varphi $$ is said to be in CNF if it's a logical conjunction of a set of clauses \$$ C_1,...,C_n $$, where each clause \$$ C $$ is a logical disjunction of a set of literals (could be a variable or it's negation). A clause for example: \$$ (x_1 \vee \neg x_2) $$
 
