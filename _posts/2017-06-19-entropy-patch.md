@@ -160,7 +160,7 @@ for (int iter=0; iter < var_num; iter++)
     if (rvNeg[iter] == 0)
       logrvBar = 0;
   } 
-	ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
+  ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
 }
 ```
 
