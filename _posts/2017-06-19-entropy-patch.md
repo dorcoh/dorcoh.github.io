@@ -103,91 +103,91 @@ I used the loop for outputting solutions to count the number of times each liter
 Added an option for printing the counts nicely (controlled by verb parameter)
 
 ```cpp
-			// print literals solution counters
-			if (verb>1)
-			{
-				// print pos - #(!x)
-				for (int iter=0; iter < var_num; iter++)
-				{
-					if (iter!=var_num-1)
-					{
-						if (verb>0)						
-							printf("%d,",varSolCountPos[iter]);							
-					}
-					else
-					{
-						if (verb>0)						
-							printf("%d\n",varSolCountPos[iter]);							
-					}
+// print literals solution counters
+if (verb>1)
+{
+// print pos - #(!x)
+for (int iter=0; iter < var_num; iter++)
+{
+if (iter!=var_num-1)
+{
+if (verb>0)						
+printf("%d,",varSolCountPos[iter]);							
+}
+else
+{
+if (verb>0)						
+printf("%d\n",varSolCountPos[iter]);							
+}
 
-				}
-				// print neg - #(x)
-				for (int iter=0; iter < var_num; iter++)
-				{
-					if (iter!=var_num-1)
-					{
-						if (verb>0)						
-							printf("%d,",varSolCountNeg[iter]);							
-					}
-					else
-					{
-						if (verb>0)						
-							printf("%d\n",varSolCountNeg[iter]);							
-					}
-				}
-			}
+}
+// print neg - #(x)
+for (int iter=0; iter < var_num; iter++)
+{
+if (iter!=var_num-1)
+{
+if (verb>0)						
+printf("%d,",varSolCountNeg[iter]);							
+}
+else
+{
+if (verb>0)						
+printf("%d\n",varSolCountNeg[iter]);							
+}
+}
+}
 ```
 
 Now when I have the counts I can compute $$ r(v) $$ and the entropy of each variable:
 
 ```cpp
-			for (int iter=0; iter < var_num; iter++)
-			{
-				int total = varSolCountPos[iter] + varSolCountNeg[iter];
-				double logrv = 0;
-				double logrvBar = 0;
-				rvPos[iter] = (double)varSolCountPos[iter] / total;
-				rvNeg[iter] = 1-rvPos[iter];
-				if (rvPos[iter] != 0 && rvNeg[iter] !=0)
-				{
-					logrv = log2(rvPos[iter]);
-					logrvBar = log2(rvNeg[iter]);
-				} 
-				else 
-				{
-					if (rvPos[iter] == 0)
-						logrv = 0;
-					if (rvNeg[iter] == 0)
-						logrvBar = 0;
-				} 
-				ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
-			}
+for (int iter=0; iter < var_num; iter++)
+{
+int total = varSolCountPos[iter] + varSolCountNeg[iter];
+double logrv = 0;
+double logrvBar = 0;
+rvPos[iter] = (double)varSolCountPos[iter] / total;
+rvNeg[iter] = 1-rvPos[iter];
+if (rvPos[iter] != 0 && rvNeg[iter] !=0)
+{
+logrv = log2(rvPos[iter]);
+logrvBar = log2(rvNeg[iter]);
+} 
+else 
+{
+if (rvPos[iter] == 0)
+logrv = 0;
+if (rvNeg[iter] == 0)
+logrvBar = 0;
+} 
+ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
+}
 ```
 
 Computing the formula entropy is done by averaging the variables entropy:
 
 ```cpp
 
-			double sumEntropy = 0;
-			for (int iter=0; iter < var_num; iter++)
-			{
-				sumEntropy += ev[iter];
-			}
+double sumEntropy = 0;
+for (int iter=0; iter < var_num; iter++)
+{
+sumEntropy += ev[iter];
+}
 
-			entropy[ss] = sumEntropy / var_num;
-			printf("entropy=%lf", entropy[ss]);
+entropy[ss] = sumEntropy / var_num;
+printf("entropy=%lf", entropy[ss]);
  ```
  
  And finally printing the averaged entropy (the algorithm runs `nsample` times)
  
  ```cpp
- 		double avgEntropy = 0;
-		for (int iter=0; iter<nsamples; iter++)
-		{
-			avgEntropy += entropy[iter];
-		}
-		avgEntropy = (double)avgEntropy / nsamples;
-		printf("Average Entropy: %f\n", avgEntropy);
+ double avgEntropy = 0;
+ for (int iter=0; iter<nsamples; iter++)
+ {
+ avgEntropy += entropy[iter];
+ }
+ avgEntropy = (double)avgEntropy / nsamples;
+ printf("Average Entropy: %f\n", avgEntropy);
  ```
 
 ## Evaluation
