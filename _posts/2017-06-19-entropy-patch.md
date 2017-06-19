@@ -23,10 +23,10 @@ Satisfying assignment: \\( \{ x_1=1,x_2=1,x_3=1,x_4=1 \} \\)
 
 ## Model counting
 
-Let \\( V \\) be the set of boolean variables of \\( \varphi \\) ,  \\( |V|=n \\), and let \\( \sigma=\{0,1\}^{n} \\) be the set of all possible assignments to these variables
+Let \\( V \\) be the set of boolean variables of \\( \varphi \\) and let \\( \sigma=\{0,1\}^{n} \\) be the set of all possible assignments to these variables
 
 An assignment \\( \sigma \in \sum \\) is a mapping that assigns a value in \\( \{0,1\} \\) to each variable in \\( V \\)
 
 Define the weight \\( w(\sigma) \\) to be 1 if \\( \varphi \\) is satisfied by \\( \sigma \\) and 0 otherwise
 
-In this context: \\( \[ W=\sum_{\sigma \in \sum}^{} w(\sigma)=\#(\varphi) \] \\)
+In this context: $$ \[ W=\sum_{\sigma \in \sum}^{} w(\sigma)=\#(\varphi) \] $$
