@@ -1,6 +1,8 @@
 ---
 published: true
 ---
-## A New Post
-WEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
+I describe here a patch I've made to SearchTreeSampler - an approximate SAT model counter for CNF formulas by Stefano Ermon.
+
+The patch leverages the uniform solution sampling to compute the entropy of a formula, which I'll describe below.
+
+# Preliminaries
