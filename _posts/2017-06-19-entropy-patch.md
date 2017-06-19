@@ -206,3 +206,8 @@ nsamples=20 , entropy=0.647872
 nsamples=40 , entropy=0.664543
 
 nsamples=80 , entropy=0.673098
+
+## References
+-Stefano Ermon, Carla Gomes, and Bart Selman.
+Uniform Solution Sampling Using a Constraint Solver As an Oracle.
+UAI-12. In Proc. 28th Conference on Uncertainty in Artificial Intelligence, August 2012.
