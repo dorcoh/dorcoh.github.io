@@ -43,7 +43,7 @@ $$ e(v) = -r(v)logr(v) -r(\bar v)logr(\bar v) $$
 
 _The entropy of a satisfiable formula is the average entropy of its variables_
 
-Motivation: Since model counting is a $$ #P $$ problem entropy is hard to compute and requires $$ | var(\varphi) | $$ calls to a model counter
+Motivation: Since model counting is a $$ #P $$ problem, entropy is hard to compute and requires $$ n $$ calls to a model counter (as the number of variables in the input formula).
 
 # STS and patch explained
 
