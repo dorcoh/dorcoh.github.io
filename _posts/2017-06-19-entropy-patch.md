@@ -41,3 +41,16 @@ The entropy of a variable $$ v \in V $$ is defined by:
 
 $$ e(v) = -r(v)logr(v) -r(\bar v)logr(\bar v) $$ 
 
+_The entropy of a satisfiable formula is the average entropy of its variables_
+
+Motivation: Since model counting is a $$ #P $$ problem entropy is hard to compute and requires $$ | var(\varphi) | $$ calls to a model counter
+
+# STS and patch explained
+
+STS, Search tree sampler is an approximate model counter designed by Stefano Ermon. It uses hashing and optimization technique in order to count solutions. Briefly, hashing means that each time we make the configuration space smaller, and optimization - calling to a solver in order to find 'pseudosolutions' until we get to the last level (full assignment). Specifically STS does that by sampling uniform (controlled by a parameter) solutions.
+
+I took advantage of this mechanism and on each run of the algorithm I recorded those uniform solutions, in order to cheaply approximate the entropy, with only one run of STS instead of $$ n $$ runs - as the size of the formula. Computing the entropy requires to compute first $$ r(v) $$ for each literal, $$ r(v) $$ could be think of as the ratio of solutions that the literal $$ v $$ appears in, from all the formula solutions. So technically if we have a decent amount of uniform solutions, we can approximate the variables entropy.
+
+
+
+
