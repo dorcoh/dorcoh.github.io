@@ -11,7 +11,7 @@ The patch leverages the uniform solution sampling method to compute the entropy 
 
 Let \\( X_1 ,... X_n \\) be boolean variables
 
-A boolean formula \\( \varphi \\) is said to be in CNF if it's a logical conjunction of a set of clauses \\( C_1,...,C_n \\), where each clause \\( C \\) is a logical disjunction of a set of literals (could be a variable or it's negation). A clause for example: \\( (x_1 \vee \neg x_2) \\)
+A boolean formula \\( \varphi \\) is said to be in CNF if it's a logical conjunction of a set of clauses \\( C_1,...,C_n \\), where each clause \\( C \\) is a logical disjunction of a set of literals (a base element that could be a variable or it's negation). A clause for example: \\( (x_1 \vee \neg x_2) \\)
 
 SAT problem is defined as deciding whether there exists an assignment that satisfies \\( \varphi \\)
 
@@ -35,6 +35,6 @@ In this context $$  W=\sum_{\sigma \in \sum}^{} w(\sigma)=\#(\varphi)  $$ is the
 
 Let $$ \varphi $$ be a propositional CNF formula, $$ var(\varphi) $$ its set of variables and $$ lit(\varphi)$ its set of literals. 
 
-If $$ \varphi $$ is SATISFIABLE, we denote by $$ r(l) $$, for $$ l \in lit(\varphi) $$, the ratio of solutions to $$ \varphi $$ that satisfy $$ l $$. Hence for all $$ v \in var(\varphi) $$ , it holds that $$ r(v) + r(\nv) = 1 $$
+If $$ \varphi $$ is SATISFIABLE, we denote by $$ r(l) $$, for $$ l \in lit(\varphi) $$, the ratio of solutions to $$ \varphi $$ that satisfy $$ l $$. Hence for all $$ v \in var(\varphi) $$ , it holds that $$ r(v) + r(\bar v) = 1 $$
 
 
