@@ -156,9 +156,9 @@ if (rvPos[iter] != 0 && rvNeg[iter] !=0)
 else 
 {
   if (rvPos[iter] == 0)
-  logrv = 0;
+  	logrv = 0;
   if (rvNeg[iter] == 0)
-  logrvBar = 0;
+  	logrvBar = 0;
 } 
 	ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
 }
