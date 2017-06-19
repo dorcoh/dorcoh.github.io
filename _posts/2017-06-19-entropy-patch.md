@@ -3,7 +3,7 @@ published: true
 ---
 I describe here a patch I've made to SearchTreeSampler - an approximate SAT model counter by [Stefano Ermon](https://cs.stanford.edu/~ermon/).
 
-The patch leverages the uniform solution sampling method to compute the entropy of a formula, a new property of formula which I'll define below.
+The patch leverages the uniform solution sampling method to compute the entropy of CNF formula, a new property of SAT formulas which I'll define below.
 
 # Preliminaries
 
@@ -20,3 +20,7 @@ An example: \\( \varphi=(x_1 \vee \neg x_2 \vee x_3)\wedge(x_4 \vee \neg x_1)\we
 Satisfying assignment: \\( \{ x_1=1,x_2=1,x_3=1,x_4=1 \} \\)
 
 \\( \Longrightarrow \varphi \\) is SATISFIABLE
+
+## Model counting
+
+
