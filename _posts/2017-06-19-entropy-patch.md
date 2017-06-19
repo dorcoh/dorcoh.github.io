@@ -23,7 +23,7 @@ Satisfying assignment: \\( \{ x_1=1,x_2=1,x_3=1,x_4=1 \} \\)
 
 ## Model counting
 
-Let \\( V \\) be the set of boolean variables of \\( \varphi \\) and let \\( \sigma = { 0,1 }^{n} \\) be the set of all possible assignments to these variables
+Let \\( V \\) be the set of boolean variables of \\( \varphi \\)
 
 An assignment \\( \sigma \in \sum \\) is a mapping that assigns a value in \\( \{0,1\} \\) to each variable in \\( V \\)
 
