@@ -148,18 +148,18 @@ for (int iter=0; iter < var_num; iter++)
   double logrvBar = 0;
   rvPos[iter] = (double)varSolCountPos[iter] / total;
   rvNeg[iter] = 1-rvPos[iter];
-if (rvPos[iter] != 0 && rvNeg[iter] !=0)
-{
-  logrv = log2(rvPos[iter]);
-  logrvBar = log2(rvNeg[iter]);
-} 
-else 
-{
-  if (rvPos[iter] == 0)
-  	logrv = 0;
-  if (rvNeg[iter] == 0)
-  	logrvBar = 0;
-} 
+  if (rvPos[iter] != 0 && rvNeg[iter] !=0)
+  {
+    logrv = log2(rvPos[iter]);
+    logrvBar = log2(rvNeg[iter]);
+  } 
+  else 
+  {
+    if (rvPos[iter] == 0)
+      logrv = 0;
+    if (rvNeg[iter] == 0)
+      logrvBar = 0;
+  } 
 	ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
 }
 ```
