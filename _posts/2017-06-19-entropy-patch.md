@@ -37,4 +37,7 @@ Let $$ \varphi $$ be a propositional CNF formula, $$ var(\varphi) $$ its set of 
 
 If $$ \varphi $$ is SATISFIABLE, we denote by $$ r(l) $$, for $$ l \in lit(\varphi) $$, the ratio of solutions to $$ \varphi $$ that satisfy $$ l $$. Hence for all $$ v \in var(\varphi) $$ , it holds that $$ r(v) + r(\bar v) = 1 $$
 
+The entropy of a variable $$ v \in V $$ is defined by:
+
+$$ e(v) = -r(v)logr(v) -r(\bar v)logr(\bar v) $$ 
 
