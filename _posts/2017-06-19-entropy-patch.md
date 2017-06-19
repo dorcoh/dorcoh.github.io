@@ -62,13 +62,153 @@ In the following I'll describe my patch:
 First I added the needed variables
 
 ```cpp
-  std::vector<int> varSolCountPos; // counter for pos
-  std::vector<int> varSolCountNeg; // counter for neg
-  std::vector<double> rvPos;		 // vector for r(v)
+  std::vector<int> varSolCountPos;	// counter for pos
+  std::vector<int> varSolCountNeg;	// counter for neg
+  std::vector<double> rvPos;		// vector for r(v)
   std::vector<double> rvNeg;
-  std::vector<double> ev;			 // vector for e(v)
-  std::vector<double> entropy;	 // vector for formula entropy for each sample
+  std::vector<double> ev;			// vector for e(v)
+  std::vector<double> entropy;		// vector for formula entropy for each sample
 ```
+
+Then I initialized them:
+
+```cpp
+  varSolCountNeg.resize(var_num);
+  varSolCountPos.resize(var_num);
+  rvPos.resize(var_num);
+  rvNeg.resize(var_num);
+  ev.resize(var_num);
+  for (int iter=0; iter<var_num; iter++)
+  {
+  varSolCountPos[iter] = 0;
+  varSolCountNeg[iter] = 0;
+  rvPos[iter] = 0;
+  rvNeg[iter] = 0;
+  ev[iter] = 0;
+  }
+```
+
+I used the loop for outputting solutions to count the number of times each literals appear in the solutions, so I added the following lines:
+
+```cpp
+  // compute #(x) and #(!x)
+  if (OutputSamples[l][i] == 1)
+  {
+  	varSolCountPos[i] += 1;
+  } else {
+  	varSolCountNeg[i] += 1;
+  }					
+```
+
+Added an option for printing the counts nicely (controlled by verb parameter)
+
+```cpp
+			// print literals solution counters
+			if (verb>1)
+			{
+				// print pos - #(!x)
+				for (int iter=0; iter < var_num; iter++)
+				{
+					if (iter!=var_num-1)
+					{
+						if (verb>0)						
+							printf("%d,",varSolCountPos[iter]);							
+					}
+					else
+					{
+						if (verb>0)						
+							printf("%d\n",varSolCountPos[iter]);							
+					}
+
+				}
+				// print neg - #(x)
+				for (int iter=0; iter < var_num; iter++)
+				{
+					if (iter!=var_num-1)
+					{
+						if (verb>0)						
+							printf("%d,",varSolCountNeg[iter]);							
+					}
+					else
+					{
+						if (verb>0)						
+							printf("%d\n",varSolCountNeg[iter]);							
+					}
+				}
+			}
+```
+
+Now when I have the counts I can compute $$ r(v) $$ and the entropy of each variable:
+
+```cpp
+			for (int iter=0; iter < var_num; iter++)
+			{
+				int total = varSolCountPos[iter] + varSolCountNeg[iter];
+				double logrv = 0;
+				double logrvBar = 0;
+				rvPos[iter] = (double)varSolCountPos[iter] / total;
+				rvNeg[iter] = 1-rvPos[iter];
+				if (rvPos[iter] != 0 && rvNeg[iter] !=0)
+				{
+					logrv = log2(rvPos[iter]);
+					logrvBar = log2(rvNeg[iter]);
+				} 
+				else 
+				{
+					if (rvPos[iter] == 0)
+						logrv = 0;
+					if (rvNeg[iter] == 0)
+						logrvBar = 0;
+				} 
+				ev[iter] = -( (rvPos[iter]) * (logrv) ) - ( (rvNeg[iter])*(logrvBar) );
+			}
+```
+
+Computing the formula entropy is done by averaging the variables entropy:
+
+```cpp
+
+			double sumEntropy = 0;
+			for (int iter=0; iter < var_num; iter++)
+			{
+				sumEntropy += ev[iter];
+			}
+
+			entropy[ss] = sumEntropy / var_num;
+			printf("entropy=%lf", entropy[ss]);
+ ```
+ 
+ And finally printing the averaged entropy (the algorithm runs `nsample` times)
+ 
+ ```cpp
+ 		double avgEntropy = 0;
+		for (int iter=0; iter<nsamples; iter++)
+		{
+			avgEntropy += entropy[iter];
+		}
+		avgEntropy = (double)avgEntropy / nsamples;
+		printf("Average Entropy: %f\n", avgEntropy);
+ ```
+
+## Evaluation
+
+I describe one easy formula (100 variables 400 clauses) results, which has an exact entropy (computed by exact model counter Cachet) of 0.673665 .
+
+With the default parameters (k=50, nsamples=10) of STS I got: 0.610541
+The parameter k controlles the uniformity of the samples, the higher it is we have stronger guarantee that the solutions are uniform. nsamples is the number of times the algorithm runs.
+
+Increasing k didn't improve the result (at least for easy formulas like this one)
+
+Increasing nsamples on the other hand, got me near the actual entropy:
+nsamples=20 , entropy=0.647872
+nsamples=40 , entropy=0.664543
+nsamples=80 , entropy=0.673098
+
+
+
+
+
+
 
 
 
