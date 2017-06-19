@@ -9,7 +9,7 @@ The patch leverages the uniform solution sampling method to compute the entropy 
 
 ## SAT
 
-We are doing \$$ \varphi $$ good
+We are doing $ \varphi $ good
 
 
 Let \$\$ X_1 ,... X_n $$ be boolean variables
