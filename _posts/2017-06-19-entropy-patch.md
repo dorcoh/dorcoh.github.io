@@ -178,7 +178,7 @@ entropy[ss] = sumEntropy / var_num;
 printf("entropy=%lf", entropy[ss]);
  ```
  
- And finally printing the averaged entropy (the algorithm runs `nsample` times)
+ And finally printing the averaged entropy outside the loop (the algorithm runs `nsample` times)
  
  ```cpp
  double avgEntropy = 0;
